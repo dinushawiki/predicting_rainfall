@@ -1,4 +1,4 @@
-# predicting rainfall
+# Predicting rainfall
 
 ## Import Data
 
@@ -151,3 +151,46 @@ lgbm_best_model = LGBMClassifier(application = 'binary', metric = 'binary_loglos
 ![roc_lgbm](https://user-images.githubusercontent.com/24527000/56231384-561c7f80-604c-11e9-85be-43bb95842f67.png)
 
 LGBMClassifier classifier gives a roc_auc value of 0.87829. This is slightly less than RandomForestClassifier. However, LGBMClassifier runs faster than RandomForestClassifier.
+
+### Neural Network
+
+Lastly we try a simple Neural network model to predict if it is going to rain tomorrow. Deep Learning is a subfield of machine learning concerned with algorithms inspired by the structure and function of the brain called artificial neural networks. We are using a Sequential Neural Netwrok with nodes and layers. The optimal Neural Network is obtained by chnaging the number of nodes and layers in the model. Then these optimal number of nodes and layers are used to train the Neural network with training data.
+
+First we need to figure out what optimizer to use. Our choices are,
+
+* adam optimizer
+* Stochastic gradient descent optimizer with different learning rates.
+
+Running optimizations tests we determined that adam optimizer gives the lowest loss. Therefore we are using the 'adam' optimizer in our deep learning model. Now we need to train the model and validate it. We will increase the number of nodes and layers to get the best posiible validation score possible.
+
+Running the validation tests we determined that increasing the number of nodes to 120 decreased the loss of the model. Therefore we are going to use 120 as the number of nodes. Increasing the number of layers did not decrease the loss of the model. Therefor we are going to use the same number of layers as the base model. Neural Network model used is,
+
+```
+model = Sequential()
+model.add(Dense(120, activation='relu', input_shape = (n_cols,)))
+model.add(Dense(120, activation='relu'))
+model.add(Dense(2, activation='softmax'))
+model.compile(optimizer = 'adam', loss = 'categorical_crossentropy', metrics=['accuracy'])
+```
+![roc_nn](https://user-images.githubusercontent.com/24527000/56231853-6e40ce80-604d-11e9-9717-70184e6afe57.png)
+
+Neural Network gives a roc_auc value of 0.0.87594. This is slightly less than both LGBMClassifier and RandomForestClassifier.
+
+## Conclusion
+
+The best classifier to predict if it is going to rain tomorrow given weather data set provided is the RandomForestClassifer with parameters {'bootstrap': True, 'max_depth': 60, 'n_estimators': 300}. It gives the best roc_auc value which provides the highest probability in identifying positive cases (rain tomorrow)
+
+```
+rf_best_model = RandomForestClassifier(bootstrap = True, max_depth = 60, n_estimators = 300, random_state=123)
+
+```
+![roc_rf](https://user-images.githubusercontent.com/24527000/56231180-d1316600-604b-11e9-8589-62eeb3522ef2.png)
+
+              precision    recall  f1-score   support
+
+           0       0.87      0.96      0.91     22094
+           1       0.76      0.49      0.60      6345
+
+   micro avg       0.85      0.85      0.85     28439
+   macro avg       0.82      0.72      0.75     28439
+weighted avg       0.84      0.85      0.84     28439
