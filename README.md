@@ -2,7 +2,7 @@
 
 ## Watch the Video
 
-[![IMAGE ALT TEXT HERE](https://www.youtube.com/upload_thumbnail?v=O7MtLnldssU&t=1&ts=1555448083720)](https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
+[![1](https://user-images.githubusercontent.com/24527000/56243741-5414e980-6069-11e9-8777-347311dfa3f9.jpg)](https://youtu.be/O7MtLnldssU)
 
 ## Import Data
 
