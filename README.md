@@ -1,4 +1,4 @@
-# Predicting rainfall
+# Predicting rainfall in Australia
 
 ## Import Data
 
