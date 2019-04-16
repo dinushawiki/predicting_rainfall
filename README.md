@@ -1,5 +1,7 @@
 # Predicting rainfall in Australia
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/CING3Z4FLv4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Import Data
 
 Can we predict whether it is going to rain tomorrow from weather data obtained today? This dataset contains daily weather observations from numerous Australian weather stations. The target variable RainTomorrow means: Did it rain the next day? Yes or No.
