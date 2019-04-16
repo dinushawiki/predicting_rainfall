@@ -96,4 +96,58 @@ The first classifier to test is Logistic Regression. Logistic regression is appr
 
 * C: Inverse of regularization strength; must be a positive float. Like in support vector machines, smaller values specify stronger regularization.
 * penalty: Used to specify the norm used in the penalization.(‘l1’ or ‘l2’)
-Model tuning is commented out as it takes long time to run. Uncomment and run if tuning is necessary
+
+The optimal parameters obtained from tuning are {'C': 1.0, 'penalty': 'l1'} with a roc_auc value of 0.85495.
+
+We train the LogisticRegression regression model with given parameters and the training set.
+
+```
+log_best_model = LogisticRegression(C = 1.0, penalty = 'l1', solver = 'liblinear')
+```
+We then calculate the roc_auc and plot the ROC curve with the test set.
+
+![roc_log](https://user-images.githubusercontent.com/24527000/56230992-5c5e2c00-604b-11e9-8531-e93f6829c124.png)
+
+LogisticRegression classifier gives a roc_auc (area under the curve) value of 0.85575.
+
+Similar calculations are performed with other classifiers and the results are shown below.
+
+### RandomForestClassifier
+
+A random forest is a classifier that fits a number of decision tree classifiers on various sub-samples of the dataset and uses averaging to improve the predictive accuracy and control over-fitting. The sub-sample size is always the same as the original input sample size but the samples are drawn with replacement when bootstrap=True (default). We are tuning the parameters max_depth and n_estimators of the RandomForestClassifier classifier.
+
+* max_depth: The maximum depth of the tree. If None, then nodes are expanded until all leaves are pure or until all leaves contain less than min_samples_split samples.
+* n_estimators: The number of trees in the forest.
+
+The optimal parameters obtained from tuning are {'bootstrap': True, 'max_depth': 60, 'n_estimators': 300} with a roc_auc value of 0.87432.
+
+```
+rf_best_model = RandomForestClassifier(bootstrap = True, max_depth = 60, n_estimators = 300, random_state=123)
+```
+![roc_rf](https://user-images.githubusercontent.com/24527000/56231180-d1316600-604b-11e9-8589-62eeb3522ef2.png)
+
+RandomForestClassifier classifier gives a roc_auc value of 0.87900. RandomForestClassifier gives a higher roc_auc than LogisticRegression. 
+
+In addition to classifying RandomForestClassifier can also be used to determine feature importance. Here we plot the significance of each feature when classifying the given features set into positive and negative classes.
+
+### LGBMClassifier
+
+Light GBM is a gradient boosting framework that uses tree based learning algorithm. It grows tree vertically while other algorithm grows trees horizontally meaning that Light GBM grows tree leaf-wise while other algorithm grows level-wise. It will choose the leaf with max delta loss to grow. When growing the same leaf, Leaf-wise algorithm can reduce more loss than a level-wise algorithm. Parameters assigned are,
+
+objective: Specifies the application of your model, whether it is a regression problem or classification problem. This is binary classification problem so 'binary' is assigned.
+metric: Specifies loss for model building. 'binary_logloss' is appropriate for loss for binary classification.
+boosting: Defines the type of algorithm you want to run. 'dart' is used for better accuracy.
+Parameters tuned are,
+
+min_data_in_leaf: Setting it to a large value can avoid growing too deep a tree, but may cause under-fitting. In practice, setting it to hundreds or thousands is enough for a large dataset.
+max_depth: The maximum depth of the tree.
+learning_rate: This determines the impact of each tree on the final outcome. GBM works by starting with an initial estimate which is updated using the output of each tree. The learning parameter controls the magnitude of this change in the estimates.
+
+The optimal parameters obtained from tuning are {'learning_rate': 0.4, 'max_depth': 10, 'min_data_in_leaf': 300} with a roc_auc value of 0.87731.
+
+```
+lgbm_best_model = LGBMClassifier(application = 'binary', metric = 'binary_logloss', boosting = 'dart', min_data_in_leaf = 300, max_depth = 10, learning_rate = 0.4)
+```
+![roc_lgbm](https://user-images.githubusercontent.com/24527000/56231384-561c7f80-604c-11e9-85be-43bb95842f67.png)
+
+LGBMClassifier classifier gives a roc_auc value of 0.87829. This is slightly less than RandomForestClassifier. However, LGBMClassifier runs faster than RandomForestClassifier.
