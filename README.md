@@ -185,12 +185,3 @@ rf_best_model = RandomForestClassifier(bootstrap = True, max_depth = 60, n_estim
 
 ```
 ![roc_rf](https://user-images.githubusercontent.com/24527000/56231180-d1316600-604b-11e9-8589-62eeb3522ef2.png)
-
-              precision    recall  f1-score   support
-
-           0       0.87      0.96      0.91     22094
-           1       0.76      0.49      0.60      6345
-
-   micro avg       0.85      0.85      0.85     28439
-   macro avg       0.82      0.72      0.75     28439
-weighted avg       0.84      0.85      0.84     28439
