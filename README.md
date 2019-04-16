@@ -1,6 +1,7 @@
 # Predicting rainfall in Australia
 
 ## Watch the Video
+https://www.youtube.com/upload_thumbnail?v=O7MtLnldssU&t=1&ts=1555448083720
 
 https://www.youtube.com/embed/CING3Z4FLv4
 
