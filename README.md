@@ -33,12 +33,14 @@ We are going to train diffrent binary classification algorithms from the supervi
 * RISK_MM: The amount of next day rain in mm. Used to create response variable RainTomorrow. A kind of measure of the "risk".
 * RainTomorrow: The target variable. Did it rain tomorrow?
 
-# Explore the Data
+## Explore the Data
 
 Data exploration showed that there are few columns with over 40% empty values. These columns (Sunshine, Evaporation, Cloud3pm, and Cloud9am) are dropped from the analysis. Also Risk_MM indicates  the amount of rainfall in millimeters for the next day. This value is used to determine the target variable "RainTomorrow". So Risk_MM should be ignored here as this would give the model a false accuracy. 
 determine the target variable "RainTomorrow". So it should be ignored here as this would give the model a false accuracy. We will fill the missing values of columns that we didn't drop later in the preprocessing pipeline.
 
 Furthur explorations shows that there are no outliers in the data and all the data points lie within acceptable ranges.
 The correlation matrix for the feature varibles and target shown here.
+
+
 
 
