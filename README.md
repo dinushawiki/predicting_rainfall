@@ -1,5 +1,7 @@
 # Predicting rainfall in Australia
 
+## Watch the Video
+
 https://www.youtube.com/embed/CING3Z4FLv4
 
 ## Import Data
