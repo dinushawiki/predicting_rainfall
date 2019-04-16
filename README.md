@@ -41,7 +41,7 @@ determine the target variable "RainTomorrow". So it should be ignored here as th
 Furthur explorations shows that there are no outliers in the data and all the data points lie within acceptable ranges.
 The correlation matrix for the feature varibles and target shown here.
 
-[alt text](https://github.com/dinushawiki/predicting_rainfall/master/correlation_matrix.png?raw=true)
+![alt text](https://github.com/dinushawiki/predicting_rainfall/master/correlation_matrix.png?raw=true)
 
-
+![alt text](https://github.com/dinushawiki/predicting_rainfall/master/correlation_matrix.png?raw=true)
 
